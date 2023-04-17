@@ -7,7 +7,6 @@ import Headers from '../component/headers';
 import React, { useState, useEffect, useRef } from 'react';
 import { Box, Button, TextField, Snackbar } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-/* 吐司弹框提示 */
 import Toast from '../component/Toast';
 import { UserState, ChangeUser } from '../api/account';
 import { findArticle, articleChange } from '../api/article';
@@ -18,13 +17,13 @@ import {
   Fab
 } from '@material-ui/core';
 function EditArticle() {
-  let params = useParams();//获得地址栏参数
-  const [msg, setmsg] = useState('');/* 提示的文案信息 */
-  const [title, settitle] = useState('');/* 标题文字信息 */
+  let params = useParams();
+  const [msg, setmsg] = useState('');
+  const [title, settitle] = useState('');
   const [description, setdescription] = useState(``);
   const [user, setuser] = useState('');
-  const [png, setpng] = useState('');/* 图片 */
-  const [file, setfile] = useState('');/* 图片文件 */
+  const [png, setpng] = useState('');
+  const [file, setfile] = useState('');
   const navigate = useNavigate();
   let fileRef = useRef();
   useEffect(() => {
@@ -61,7 +60,7 @@ function EditArticle() {
     reader.onload = function (e) {
       callback(e.target.result);
     };
-    reader.readAsDataURL(file); // 读取完后会调用onload方法
+    reader.readAsDataURL(file); 
   }
   return (
     <div id="EditUserData">
@@ -75,7 +74,6 @@ function EditArticle() {
                 <div className='input'>
                   <span className='tit'>picture:</span>
 
-                  {/* 存储图片文件 */}
                   {png == '' ?
                     <div>
                       <Fab color="primary" aria-label="add" onClick={() => {
@@ -131,12 +129,8 @@ function EditArticle() {
                 </div>
                 <p>
                   <Button variant="contained" color="primary" onClick={() => {
-
-                    // // 验证姓名
                     // var filtername = /^([A-Za-z])+$/;
-                    // // 验证邮箱
                     // var filteremail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\.\-])+\.)+([a-zA-Z]{2,4})+$/;
-                    // // 验证密码(可以包含特殊字符)
                     // var filterpwd = /^([A-Za-z0-9_\.\’\-\s]{6,})+$/
                     if (title == '' || description == '') {
                       setmsg({
@@ -144,14 +138,13 @@ function EditArticle() {
                       })
                     } else {
                       var formdata = new FormData();
-                      formdata.append("title", title);/* 文章标题 */
-                      formdata.append("description", description);/* 文章描述 */
+                      formdata.append("title", title);
+                      formdata.append("description", description);
                       formdata.append("uid", params.userid);
                       if (file != '') {
                         formdata.append("file", file);
                       }
 
-                      /* 表单提交 */
                       articleChange(formdata).then((res) => {
                         console.log(res.message)
                         setmsg({
@@ -184,7 +177,7 @@ function EditArticle() {
 
         </Typography>
       </Container>
-      {/* 提示信息 */}
+      {/* alert */}
       {msg != '' ? <Toast msg={msg} /> : ""}
     </div>
   )

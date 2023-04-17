@@ -1,5 +1,5 @@
 import http from './index.js'
-/* 登录 */
+/* login */
 export const UserLogin = data => {
   return http({
     url: '/account/login',
@@ -7,7 +7,7 @@ export const UserLogin = data => {
     data
   })
 }
-/* 注册 */
+/* register */
 export const UserRegister = data => {
   return http({
     url: '/account/register',
@@ -15,14 +15,14 @@ export const UserRegister = data => {
     data
   })
 }
-/* 获得当前登录用户基本信息 */
+/* get current user's information*/
 export const UserState = () => {
   return http({
     url: '/account/userstate',
     method: 'get',
   })
 }
-/* 修改当前登录用户基本信息 */
+/* change user */
 
 export const ChangeUser = (data) => {
   return http({
@@ -40,7 +40,7 @@ export const FindUser = data => {
   })
 }
 
-/* 获得所有用户基本信息 */
+/* get all user's information */
 export const Find = () => {
   return http({
     url: `/users/find`,

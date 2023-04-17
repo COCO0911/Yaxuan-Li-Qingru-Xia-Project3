@@ -24,9 +24,9 @@ import Cardbox from './../component/cardbox';
 import { articleList } from './../api/article';
 import SearchIcon from '@material-ui/icons/Search';
 export default function UserList(props) {
-  let params = useParams();//获得地址栏参数
-  const [list, setlist] = useState([]);/* 存储用户数据 */
-  const [copylist, setcopylist] = useState([]);/* 存储用户数据 */
+  let params = useParams();
+  const [list, setlist] = useState([]);
+  const [copylist, setcopylist] = useState([]);
   const [searchtxt, setsearchtxt] = useState('');
   const navigate = useNavigate();
   useEffect(() => {

@@ -7,22 +7,20 @@ const http = axios.create({
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     // 'Access-Control-Allow-Origin': '*',
-    /* 设定jwt请求头 */
+
     'authorization': (localStorage.getItem('token') == null ? '' : localStorage.getItem('token'))
     // 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
   },
   data: {},
-  // crossdomain: true,/* 跨域设定 */
   timeout: 5000,
   responseType: 'json',
-  // withCredentials: true,//表示跨域请求时是否需要使用凭证cookie
+  // withCredentials: true,//check if need cookies
 })
 
-// 添加一个请求拦截器
 http.interceptors.request.use((config) => {
   let localtoken = localStorage.getItem('token');
   if (config.headers.authorization != localtoken) {
-    /* 如果请求的token和本地存储的token不一致，重置请求的token值 */
+    /* if token not same, request new token */
     config.headers.authorization = localtoken;
   }
   return config
@@ -31,7 +29,6 @@ http.interceptors.request.use((config) => {
   return Promise.reject(error)
 })
 
-// 添加一个响应拦截器
 http.interceptors.response.use((response) => {
   // console.log(response);
   // if (response.data || response.data.code == '0') {
@@ -47,53 +44,53 @@ http.interceptors.response.use((response) => {
   if (error.response) {
     switch (error.response.status) {
       case 400:
-        error.message = '请求错误'
+        error.message = 'Unauthorized'
         break
 
       case 401:
-        error.message = '未授权，请登录'
+        error.message = 'Unauthorized, please log in'
         break
 
       case 403:
-        error.message = '拒绝访问'
+        error.message = 'Forbidden'
         break
 
       case 404:
-        error.message = `请求地址出错: ${error.response.config.url}`
+        error.message = `Not found: ${error.response.config.url}`
         break
 
       case 408:
-        error.message = '请求超时'
+        error.message = 'Request Timed-out'
         break
 
       case 500:
-        error.message = '服务器内部错误'
+        error.message = 'Internal Server Error'
         break
 
       case 501:
-        error.message = '服务未实现'
+        error.message = 'Not Implemented'
         break
 
       case 502:
-        error.message = '网关错误'
+        error.message = 'Bad Gateway'
         break
 
       case 503:
-        error.message = '服务不可用'
+        error.message = 'Service Unavailable'
         break
 
       case 504:
-        error.message = '网关超时'
+        error.message = 'Gateway Time-out'
         break
 
       case 505:
-        error.message = 'HTTP版本不受支持'
+        error.message = 'HTTP Version not supported'
         break
       default:
-        error.message = `连接出错(${error.response.status})!`
+        error.message = `connect err(${error.response.status})!`
     }
   } else {
-    error.message = '网络异常,连接服务器失败!'
+    error.message = 'network error,failed to connect to the server!'
   }
   return Promise.reject(error)
 })

@@ -4,7 +4,6 @@ import {
     Link,
     useHistory, useNavigate, useLocation
 } from 'react-router-dom';
-/* 吐司弹框提示 */
 import Toast from './Toast';
 import { UserState } from '../api/account';
 import {
@@ -36,21 +35,19 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 10,
     },
 }));
-/* 退出弹框动画 */
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 export default function Headers(props) {
     const classes = useStyles();
-    const [msg, setmsg] = useState('');/* 提示的文案信息 */
-    /* 获取用户状态是否登录 */
+    const [msg, setmsg] = useState('');
     const [token, settoken] = useState('');
     const navigate = useNavigate();
-    const location = useLocation();/* 获取路径参数信息（防止信息不再获取） */
-    const [anchorEl, setAnchorEl] = useState(null);/* 下拉菜单 */
-    const open = Boolean(anchorEl);/* 下拉菜单显示隐藏 */
+    const location = useLocation();
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
     const [user, setuser] = useState('');
-    const [quitOpen, setquitOpen] = useState(false);/* 确认退出弹框 */
+    const [quitOpen, setquitOpen] = useState(false);
     useEffect(() => {
         settoken(localStorage.getItem('token') == null ? '' : localStorage.getItem('token'))
         if (localStorage.getItem('token') != null) {
@@ -70,13 +67,10 @@ export default function Headers(props) {
         }
 
     }, [location]);
-    /* 下拉菜单显示隐藏 */
     const handleMenu = (event) => {
-        /* 获取对应的dom元素 */
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
-        /* 关闭弹框 */
         setAnchorEl(null);
     };
 
@@ -109,7 +103,6 @@ export default function Headers(props) {
                     &nbsp;
                     <div className='fr'>
                         {user == '' ?
-                            /* 如果没登录 */
                             <div>
                                 <Button className='fl' variant="outlined" color="inherit" style={{ margin: '0 10px' }} onClick={() => {
                                     navigate(`/login`);
@@ -124,7 +117,6 @@ export default function Headers(props) {
                                 </Button>
                             </div>
                             :
-                            /* 如果登录了 */
                             <div>
                                 <Link style={{color:'#fff'}} to={`/UserArticle/${user._id}`}>{user.Firstname} {user.Lastname}</Link>
                                 
@@ -153,12 +145,10 @@ export default function Headers(props) {
                                     onClose={handleClose}
                                 >
                                     <MenuItem onClick={() => {
-                                        /* 显示用户详情信息 */
                                         navigate(`/UserArticle/${user._id}`);
                                         setAnchorEl(null);
                                     }}>My account</MenuItem>
                                     <MenuItem onClick={() => {
-                                        /* 确认退出弹框 */
                                         setquitOpen(true);
                                         setAnchorEl(null);
                                     }}>quit</MenuItem>
@@ -168,7 +158,6 @@ export default function Headers(props) {
                 </Toolbar>
             </AppBar>
             {msg != '' ? <Toast msg={msg} /> : ""}
-            {/* 确认弹框 */}
             <Dialog
                 open={quitOpen}
                 TransitionComponent={Transition}

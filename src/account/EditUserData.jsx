@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { Box, Button, TextField, Snackbar, Select, FormControl, InputLabel, MenuItem } from '@material-ui/core';
-/* 吐司弹框提示 */
+/* pop up */
 import Toast from './../component/Toast';
 import { UserState, ChangeUser } from '../api/account';
 import {
@@ -15,8 +15,8 @@ import {
 } from '@material-ui/core';
 
 function EditUserData() {
-  let params = useParams();//获得地址栏参数
-  const [msg, setmsg] = useState('');/* 提示的文案信息 */
+  let params = useParams();//get the address
+  const [msg, setmsg] = useState('');
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
   const [email, setemail] = useState("");
@@ -52,10 +52,9 @@ function EditUserData() {
     })
   }, []);
 
-  /* 注册 */
+  /* register */
   const toRegister = () => {
     console.log('asdasd')
-    /* 调用接口 */
     ChangeUser({
       _id: user._id,
       Firstname: firstname,
@@ -180,11 +179,11 @@ function EditUserData() {
                 <p>
                   <Button variant="contained" color="primary" onClick={() => {
 
-                    // 验证姓名
+                    // verify name
                     var filtername = /^([A-Za-z])+$/;
-                    // 验证邮箱
+                    // verify email
                     var filteremail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\.\-])+\.)+([a-zA-Z]{2,4})+$/;
-                    // 验证密码(可以包含特殊字符)
+                    // verify passcode including every special character
                     var filterpwd = /^([A-Za-z0-9_\.\’\-\s]{6,})+$/
 
                     if (firstname === '' || lastname === ''
@@ -236,7 +235,7 @@ function EditUserData() {
           </Typography>
           : ''}
       </Container>
-      {/* 提示信息 */}
+      {/* message */}
       {msg != '' ? <Toast msg={msg} /> : ""}
     </div>
   )

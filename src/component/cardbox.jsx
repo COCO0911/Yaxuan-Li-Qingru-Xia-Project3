@@ -34,21 +34,19 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 function Cardbox(props) {
-    const [list, setlist] = useState(props.cardData);/* 数据列表 */
-    const { setMaking } = props;/* 子向父传值 */
+    const [list, setlist] = useState(props.cardData);
+    const { setMaking } = props;
     const navigate = useNavigate();
-    const [quitOpen, setquitOpen] = useState(false);/* 确认退出弹框 */
+    const [quitOpen, setquitOpen] = useState(false);
 
     // let data = JSON.parse(params.data);
     // useEffect(() => {
     //     console.log(list.user_data[0]._id)
     // }, []);
-    /* 文章删除 */
     const deleted = () => {
-        /* 删除弹框显示 */
         setquitOpen(true)
     }
-    /* 文章编辑 */
+    /* edit article */
     const edit = (uid) => {
         navigate(`/EditArticle/${uid}`);
     }
@@ -60,13 +58,12 @@ function Cardbox(props) {
                         aria-label="recipe"
                         src="https://picsum.photos/40/40"
                         onClick={() => {
-                            /* 显示用户详情信息 */
                             navigate(`/UserArticle/${list.user_data[0]._id}`);
                         }}>
                     </Avatar>
                 }
                 action={
-                    /* 如果是作者自己发布的话，就显示对应的编辑和删除按钮 */
+                    /* if user post by self，can delete and edit */
                     props.userdata !== '' ?
                         props.userdata._id === list.user_data[0]._id ?
 
@@ -129,8 +126,6 @@ function Cardbox(props) {
 
 
             </CardActions>
-
-            {/* 确认弹框 */}
             <Dialog
                 open={quitOpen}
                 TransitionComponent={Transition}
@@ -155,7 +150,6 @@ function Cardbox(props) {
                     </Button>
                     <Button onClick={() => {
                         setquitOpen(false)
-                        /* 调用删除接口 */
                         articleDelete({ _id: list._id }).then((res) => {
                             setMaking(res)
                         }).catch((err) => {

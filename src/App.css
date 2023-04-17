@@ -112,7 +112,7 @@
   text-align: left;
   color: #666;
 }
-/* 用户列表 */
+/* user list */
 #userList .MuiTypography-root {
   padding: 30px;
 }
@@ -174,7 +174,7 @@
   text-align: left;
   color: #666;
 }
-/* 编辑个人信息表单 */
+/* edit user infor */
 #EditUserData .mainbox {
   background-color: #cfe8fc;
   height: calc(100vh - 90px);
@@ -218,7 +218,7 @@
     background-position: -100% 0;
   }
 }
-/* 搜索栏 */
+/* searchline */
 .searchline {
   max-width: 900px;
   margin: 30px auto;

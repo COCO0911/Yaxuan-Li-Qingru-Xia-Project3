@@ -5,8 +5,8 @@ import {
     useHistory, useNavigate, useLocation, useParams
 } from 'react-router-dom';
 import Headers from '../component/headers';
-import { FindUser, UserState } from './../api/account';/* 用户基本信息 */
-// import { UserLogin } from './../api/account';/* 用户文章信息 */
+import { FindUser, UserState } from './../api/account';/* user info */
+// import { UserLogin } from './../api/account';/* user article info */
 import {
     Container, Typography,
     Button,
@@ -22,13 +22,12 @@ import {
 import EditIcon from '@material-ui/icons/Edit';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Cardbox from './../component/cardbox';
-/* 吐司弹框提示 */
 import Toast from './../component/Toast';
 import { articleUserData } from './../api/article';
 export default function UserArticle(props) {
-    let params = useParams();//获得地址栏参数
+    let params = useParams();
     console.log(params.userid)
-    const [loginUser, setloginUser] = useState(false);/* 判断当前的用户信息是否为登录的用户 */
+    const [loginUser, setloginUser] = useState(false);
     const [userdata, setuserdata] = useState({
         "Email": "",
         "Firstname": "",
@@ -37,14 +36,14 @@ export default function UserArticle(props) {
         "description": "",
         "_id": "",
     })
-    const [msg, setmsg] = useState('');/* 提示的文案信息 */
-    const [list, setlist] = useState([]);/* 存储文章数据 */
-    const [user, setuser] = useState('');/* 登录的用户数据局 */
+    const [msg, setmsg] = useState('');
+    const [list, setlist] = useState([]);/* save data */
+    const [user, setuser] = useState('');/* login data */
     const navigate = useNavigate();
     useEffect(() => {
         FindUser({ '_id': params.userid }).then((res) => {
             setuserdata(res.data);
-            /* 获取当前的登录用户信息 */
+            /* get cur user info */
             UserState().then((resp) => {
 
                 console.log(resp.data.data.userdata._id)
@@ -52,7 +51,7 @@ export default function UserArticle(props) {
                 if (resp.ret == '001') {
                     return false;
                 } else {
-                    /* 如果当前用户信息，和登录的用户信息相同 */
+                    /* if user match */
                     if (resp.data.data.userdata._id == res.data._id) {
                         setloginUser(true)
                         setuser(resp.data.data.userdata)
@@ -69,19 +68,16 @@ export default function UserArticle(props) {
     }, [params.userid]);
 
     const showList = () => {
-        /* 指定用户的文章的列表 */
         articleUserData({ '_id': params.userid }).then((res) => {
             setlist(res.reverse());
         }).catch((err) => {
             console.log(err)
         })
     }
-    /* 删除文章，子传父 */
     const setMaking = (res) => {
 
         if (res.ret == '000') {
             setmsg(res);
-            /* 获得所有文章的列表 */
             showList()
         };
     }

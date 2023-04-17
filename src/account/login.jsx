@@ -9,21 +9,17 @@ import { UserLogin } from './../api/account';
 function Login() {
     const [email, setemail] = useState("yjsz002@163.com");
     const [password, setpassword] = useState("123456");
-    const [msgtxt, setmsgtxt] = useState('');/* 提示的文字信息 */
-    const [success, setsuccess] = useState(false);/* 判断是否登录成功，登录成功后跳转页面 */
-    const [open, setOpen] = useState(false);/* 弹窗提示显示还是隐藏 */
+    const [msgtxt, setmsgtxt] = useState('');/* message */
+    const [success, setsuccess] = useState(false);/* check if its log in successful，if success then switch to other page */
+    const [open, setOpen] = useState(false);/* pop window */
     const navigate = useNavigate();
-    /* 弹框关闭 */
     const handleClose = (event, reason) => {
         setOpen(false);
-        /* 如果表单验证成功，就跳转页面 */
         if (success == true) {
             navigate(`/home`);
         }
     };
-    /* 用户登录 */
     const toLogin = () => {
-        /* 调用接口 */
         UserLogin({
             Email: email,
             password: password,

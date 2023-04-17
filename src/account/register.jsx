@@ -9,13 +9,12 @@ function Register() {
     const [password, setpassword] = useState("123456");
     const [surepassword, setsurepassword] = useState("123456");
     const [description, setdescription] = useState("user description");
-    const [open, setOpen] = useState(false);/* 弹窗提示显示还是隐藏 */
-    const [msgtxt, setmsgtxt] = useState('');/* 提示的文字信息 */
-    const [success, setsuccess] = useState(false);/* 判断是否注册成功，注册成功后跳转页面 */
+    const [open, setOpen] = useState(false);
+    const [msgtxt, setmsgtxt] = useState('');
+    const [success, setsuccess] = useState(false);
     const navigate = useNavigate();
-    /* 注册 */
+    /* register */
     const toRegister = () => {
-        /* 调用接口 */
         UserRegister({
             Firstname: firstname,
             Lastname: lastname,
@@ -43,10 +42,8 @@ function Register() {
             setOpen(true);
         })
     }
-    /* 弹框关闭 */
     const handleClose = (event, reason) => {
         setOpen(false);
-        /* 如果表单验证成功，就跳转页面 */
         if (success == true) {
             navigate(`/home`);
         }

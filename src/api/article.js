@@ -1,6 +1,5 @@
-/* 文章接口 */
 import http from './index.js'
-/* 文章发表 */
+/* post article */
 export const Add = data => {
     return http({
         url: '/index/addarticle',
@@ -8,7 +7,7 @@ export const Add = data => {
         data: data
     })
 }
-/* 指定文章信息详情 */
+/* article info */
 export const findArticle = data => {
     return http({
         url: '/index/findArticle',
@@ -17,7 +16,7 @@ export const findArticle = data => {
     })
 }
 
-/* 文章列表 */
+/* article list */
 export const articleList = data => {
     return http({
         url: '/index/articleList',
@@ -25,7 +24,6 @@ export const articleList = data => {
     })
 }
 
-/* 指定用户的文章和个人信息 */
 export const articleUserData = data => {
     return http({
         url: '/index/articleUserData',
@@ -34,7 +32,7 @@ export const articleUserData = data => {
     })
 }
 
-/* 删除文章信息 */
+/* delete article */
 export const articleDelete = data => {
     return http({
         url: '/index/articleDelete',
@@ -44,7 +42,7 @@ export const articleDelete = data => {
 }
 
 
-/* 修改文章信息 */
+/* edit */
 export const articleChange = data => {
     return http({
         url: '/index/articleChange',
