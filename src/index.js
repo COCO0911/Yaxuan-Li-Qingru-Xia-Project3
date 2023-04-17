@@ -23,28 +23,22 @@ root.render(
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="/EditUserData" element={<EditUserData />} />{/* 编辑用户信息 */}
-        <Route path="/UserArticle/:userid" element={<UserArticle />} />{/* 文章详情 */}
-        <Route path="/AddArticle" element={<AddArticle />} />{/* 发表文章 */}
-        <Route path="/EditArticle/:userid" element={<EditArticle />} />{/* 修改文章 */}
-        <Route path="/UserList" element={<UserList />} />{/* 用户列表 */}
+        <Route path="/EditUserData" element={<EditUserData />} />
+        {}
+        <Route path="/UserArticle/:userid" element={<UserArticle />} />
+        {}
+        <Route path="/AddArticle" element={<AddArticle />} />
+        {}
+        <Route path="/EditArticle/:userid" element={<EditArticle />} />
+        {}
+        <Route path="/UserList" element={<UserList />} />
+        {}
         <Route path="Register" element={<Register />} />
-        {/* 写法1 */}
-        {/* <Route path="/file/:data" element={<File />} /> */}
-        {/* 写法2 */}
-        {/* 当没有参数的时候显示指定内容【索引路线】 */}
-        {/* <Route path="file" element={<File />} >
-
-          <Route
-            index
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>Select an invoice</p>
-              </main>
-            }
-          />
-          <Route path=":data" element={<File />} />
-        </Route> */}
+        {}
+        {}
+        {}
+        {}
+        {}
         {}
         <Route
           path="*"
@@ -58,9 +52,6 @@ root.render(
     </Routes>
   </HashRouter>
   // </React.StrictMode>
-
-
-
 );
 
 // If you want to start measuring performance in your app, pass a function

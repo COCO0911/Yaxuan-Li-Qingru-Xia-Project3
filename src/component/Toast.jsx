@@ -1,41 +1,36 @@
-/*  */
 import React, { useState, useEffect } from 'react';
 import './toast.css';
-import {
-    useNavigate
-} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Snackbar } from '@material-ui/core';
 export default function Toast(props) {
-    const [msg, setmsg] = useState(props.msg);
-    console.log(props.msg)
-    const [open, setOpen] = useState(false);
-    const navigate = useNavigate();
-    const handleClose = () => {
-        setOpen(false);
-        if (msg.url != undefined) {
-            navigate(msg.url);
-        };
+  const [msg, setmsg] = useState(props.msg);
+  console.log(props.msg);
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const handleClose = () => {
+    setOpen(false);
+    if (msg.url != undefined) {
+      navigate(msg.url);
     }
-    useEffect(() => {
-        setOpen(true);
-    }, []);
+  };
+  useEffect(() => {
+    setOpen(true);
+  }, []);
 
-    return (
-        <div>
-            <Snackbar
-                key={new Date().getTime()}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                }}
-                open={open}
-                autoHideDuration={2000}
-                onClose={handleClose}
-                message={msg.message}
-                action={
-                    <div />
-                }
-            />
-        </div>
-    );
+  return (
+    <div>
+      <Snackbar
+        key={new Date().getTime()}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        message={msg.message}
+        action={<div />}
+      />
+    </div>
+  );
 }

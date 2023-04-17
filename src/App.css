@@ -3,7 +3,8 @@
   display: block;
   width: 100%;
   position: fixed;
-  background: transparent url('https://picsum.photos/1600/1300') no-repeat top fixed;
+  background: transparent url('https://picsum.photos/1600/1300') no-repeat top
+    fixed;
   background-size: cover;
 }
 .loginbox .main {
@@ -19,7 +20,22 @@
 .loginbox h1 {
   font-size: 36px;
   font-weight: bold;
-  background-image: linear-gradient(to right, red, orange, yellow, green, yellow, orange, red, orange, yellow, green, yellow, orange, red);
+  background-image: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    yellow,
+    orange,
+    red,
+    orange,
+    yellow,
+    green,
+    yellow,
+    orange,
+    red
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-background-size: 200% 100%;
@@ -57,9 +73,10 @@
 .MuiSnackbarContent-root .MuiSnackbarContent-action .msgtxt {
   text-align: left;
 }
-/* 文章列表 */
+
 #mainlist .topbox {
-  background: transparent url('https://picsum.photos/1200/400') no-repeat top scroll;
+  background: transparent url('https://picsum.photos/1200/400') no-repeat top
+    scroll;
   background-size: cover;
   width: 100%;
   height: 300px;
@@ -117,7 +134,8 @@
   padding: 30px;
 }
 #userList .topbox {
-  background: transparent url('https://picsum.photos/1200/400') no-repeat top scroll;
+  background: transparent url('https://picsum.photos/1200/400') no-repeat top
+    scroll;
   background-size: cover;
   width: 100%;
   padding-top: 120px;
@@ -187,7 +205,22 @@
   height: 90px;
   line-height: 90px;
   font-weight: bold;
-  background-image: linear-gradient(to right, red, orange, yellow, green, yellow, orange, red, orange, yellow, green, yellow, orange, red);
+  background-image: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    yellow,
+    orange,
+    red,
+    orange,
+    yellow,
+    green,
+    yellow,
+    orange,
+    red
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-background-size: 200% 100%;
